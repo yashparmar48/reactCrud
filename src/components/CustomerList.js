@@ -99,7 +99,7 @@ const CustomerList = () => {
             <th>#</th>
             <th>Name</th>
             <th>Email</th>
-            <th>Address</th>
+            {/* <th>Address</th> */}
             <th>Actions</th>
           </tr>
         </thead>
@@ -111,7 +111,7 @@ const CustomerList = () => {
                 <td>{customer?.id}</td>
                 <td>{customer.name}</td>
                 <td>{customer.email}</td>
-                <td>{customer.address}</td>
+                {/* <td>{customer.address}</td> */}
                 <td>
                   <button className="edit-button" onClick={() => handleEdit(customer?.id, customer)}>Edit</button>
                   <button className="delete-button" onClick={() => handleDelete(customer?.id)}>Delete</button>

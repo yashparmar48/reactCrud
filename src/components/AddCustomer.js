@@ -37,14 +37,14 @@ const AddCustomer = () => {
           onChange={handleChange}
           required
         />
-        <input
+        {/* <input
           type="text"
           name="address"
           placeholder="Address"
           value={customer.address}
           onChange={handleChange}
           required
-        />
+        /> */}
         <button type="submit">Add</button>
       </form>
     </div>

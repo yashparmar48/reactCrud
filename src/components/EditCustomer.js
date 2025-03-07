@@ -1,31 +1,37 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import {  updateCustomer } from '../services/customerService';
-import '../CSS/AddCustomer.css'; 
+import { updateCustomer } from '../services/customerService';
+import '../CSS/AddCustomer.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCustomerById } from '../features/customers/customerSlice';
 
 const EditCustomer = () => {
-  const { id } = useParams(); 
+  const { id } = useParams();
   const dispatch = useDispatch();
   const [customer, setCustomer] = useState({ name: '', email: '', address: '' });
-  const navigate = useNavigate();
-  const {data} = useSelector((state) => state.customers.customer) || {};
+  console.log('customer state',customer);
   
+  const navigate = useNavigate();
+  const customerDetail = useSelector((state) => state.customers?.customer) || {};
+
+
+  console.log('customer detail', customerDetail);
+
+
 
   useEffect(() => {
     dispatch(fetchCustomerById(id))
   }, [id, dispatch]);
 
   useEffect(() => {
-    if (data) {
+    if (customerDetail) {
       setCustomer({
-        name: data.name || '',
-        email: data.email || '',
-        address: data.address || '',
+        name: customerDetail?.customer?.name || '',
+        email: customerDetail?.customer?.email || '',
+        // address: data.address || '',
       });
     }
-  }, [data]);
+  }, [customerDetail]);
 
 
   const handleChange = (e) => {
@@ -33,9 +39,9 @@ const EditCustomer = () => {
     setCustomer({ ...customer, [name]: value });
   };
 
-  const handleEdit = ((id, data)=>{
-    console.log("handle edit  ",id,data)
-    navigate(`/edit/${id}`); 
+  const handleEdit = ((id, data) => {
+    console.log("handle edit  ", id, data)
+    navigate(`/edit/${id}`);
     // dispatch(updateCustomerData(id,data));
   })
 
@@ -50,7 +56,7 @@ const EditCustomer = () => {
   };
 
   return (
-    <div className="add-customer-container"> 
+    <div className="add-customer-container">
       <form onSubmit={handleSubmit}>
         <h2>Edit Customer</h2>
         <input
@@ -69,14 +75,14 @@ const EditCustomer = () => {
           onChange={handleChange}
           required
         />
-        <input
+        {/* <input
           type="text"
           name="address"
           placeholder="Address"
           value={customer.address}
           onChange={handleChange}
           required
-        />
+        /> */}
         <button type="submit">Update</button>
       </form>
     </div>

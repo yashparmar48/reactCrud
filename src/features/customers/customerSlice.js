@@ -21,6 +21,8 @@ export const updateCustomerData = createAsyncThunk('customers/updateCustomer', a
 });
 export const fetchCustomerById = createAsyncThunk('customers/fetchCustomerById', async (id) => {
   const response = await fetchCustomerDetail(id);
+  console.log('responedata',response.data);
+  
   return response.data
 });
 
@@ -59,6 +61,9 @@ const customerSlice = createSlice({
         // state.customers.data = actualCustomers?.filter((customer) => customer._id !== action.payload);
       })
       .addCase(fetchCustomerById.fulfilled, (state, action) => {
+        console.log('state',state);
+        console.log('state payload',state.payload);
+        
         state.status = 'succedeed';
         state.customer = action.payload
       });

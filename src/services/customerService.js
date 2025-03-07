@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const API_URL = 'http://3.91.213.221:5000/api/customers';
+// const API_URL = 'http://localhost:5000/api/customers';
 
 // export const getCustomers = () => axios.get(`${API_URL}/getCustomers`)
 

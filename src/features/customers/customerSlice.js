@@ -50,8 +50,13 @@ const customerSlice = createSlice({
         state.customers.push(action.payload);
       })
       .addCase(removeCustomer.fulfilled, (state, action) => {
-        const actualCustomers = [...state?.customers?.data];
-        state.customers.data = actualCustomers?.filter((customer) => customer._id !== action.payload);
+        // console.log('state',state?.customers?.data);
+        // console.log('action',action);
+        
+        // const actualCustomers = [...state?.customers?.data];
+        // console.log('acutalCustomers',actualCustomers);
+        
+        // state.customers.data = actualCustomers?.filter((customer) => customer._id !== action.payload);
       })
       .addCase(fetchCustomerById.fulfilled, (state, action) => {
         state.status = 'succedeed';

@@ -32,9 +32,12 @@ const CustomerList = () => {
   
 
   const handleDelete = (id) => {
+    console.log('id delete',id);
+    
     const confirmed = window.confirm('Are you sure you want to delete this customer?');
     if (confirmed) {
       dispatch(removeCustomer(id));
+      dispatch(fetchCustomers())
     }
   };
 
@@ -104,13 +107,14 @@ const CustomerList = () => {
           {filteredCustomers?.length > 0 ? (
             filteredCustomers?.map((customer, index) => (
               <tr key={customer._id}>
-                <td>{index + 1}</td>
+                {/* <td>{index + 1}</td> */}
+                <td>{customer?.id}</td>
                 <td>{customer.name}</td>
                 <td>{customer.email}</td>
                 <td>{customer.address}</td>
                 <td>
-                  <button className="edit-button" onClick={() => handleEdit(customer._id, customer)}>Edit</button>
-                  <button className="delete-button" onClick={() => handleDelete(customer._id)}>Delete</button>
+                  <button className="edit-button" onClick={() => handleEdit(customer?.id, customer)}>Edit</button>
+                  <button className="delete-button" onClick={() => handleDelete(customer?.id)}>Delete</button>
                 </td>
               </tr>
             ))
